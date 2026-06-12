@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-background: oklch(98% 0.005 240);
+  --color-foreground: oklch(20% 0.01 240);
+  
+  --color-card: oklch(99% 0.005 240);
+  --color-card-foreground: oklch(20% 0.01 240);
+  
+  --color-popover: oklch(99% 0.005 240);
+  --color-popover-foreground: oklch(20% 0.01 240);
+  
+  --color-primary: oklch(55% 0.2 240);
+  --color-primary-foreground: oklch(98% 0.005 240);
+  
+  --color-secondary: oklch(90% 0.01 240);
+  --color-secondary-foreground: oklch(20% 0.01 240);
+  
+  --color-muted: oklch(92% 0.005 240);
+  --color-muted-foreground: oklch(45% 0.01 240);
+  
+  --color-accent: oklch(90% 0.01 240);
+  --color-accent-foreground: oklch(20% 0.01 240);
+  
+  --color-destructive: oklch(65% 0.25 25);
+  --color-destructive-foreground: oklch(98% 0.005 240);
+  
+  --color-border: oklch(85% 0.01 240);
+  --color-input: oklch(85% 0.01 240);
+  --color-ring: oklch(55% 0.2 240);
+  
+  --radius: 0.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --color-background: oklch(10% 0.01 240);
+  --color-foreground: oklch(95% 0.005 240);
+  
+  --color-card: oklch(15% 0.01 240);
+  --color-card-foreground: oklch(95% 0.005 240);
+  
+  --color-popover: oklch(15% 0.01 240);
+  --color-popover-foreground: oklch(95% 0.005 240);
+  
+  --color-primary: oklch(65% 0.2 240);
+  --color-primary-foreground: oklch(10% 0.01 240);
+  
+  --color-secondary: oklch(25% 0.01 240);
+  --color-secondary-foreground: oklch(95% 0.005 240);
+  
+  --color-muted: oklch(20% 0.01 240);
+  --color-muted-foreground: oklch(65% 0.01 240);
+  
+  --color-accent: oklch(25% 0.01 240);
+  --color-accent-foreground: oklch(95% 0.005 240);
+  
+  --color-destructive: oklch(55% 0.25 25);
+  --color-destructive-foreground: oklch(10% 0.01 240);
+  
+  --color-border: oklch(30% 0.01 240);
+  --color-input: oklch(30% 0.01 240);
+  --color-ring: oklch(65% 0.2 240);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:opacity-90 px-4 py-2 rounded-md font-medium transition-opacity;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:opacity-80 px-4 py-2 rounded-md font-medium transition-opacity;
+  }
+  
+  .card {
+    @apply bg-card text-card-foreground rounded-lg border shadow-sm;
+  }
+  
+  .input-field {
+    @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
 }
