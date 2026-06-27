@@ -16,6 +16,7 @@
 # next.js
 /.next/
 /out/
+dist/
 
 # production
 /build
@@ -30,9 +31,19 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# .gitignore - Make sure these are included
+.env
+.env.local
+.env.*.local
+.env.production
 .env.production.local
+.env.development.local
+
+# Prisma
+node_modules/.prisma
+*.db
+*.sqlite
+*.sqlite-journal
 
 # vercel
 .vercel
@@ -42,3 +53,6 @@ yarn-error.log*
 next-env.d.ts
 
 /app/generated/prisma
+
+.vercel
+.env*
